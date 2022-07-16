@@ -1,7 +1,7 @@
 <html>
   <head>
-  <head>
-  <body dir="rtl">
+  </head>
+  <body dir="rtl" style="font-size:31px">
     <div style="text-align:right;font-size:72px">
       הכפתור הסודי של שירילו ואבא.
     </div>
@@ -9,5 +9,34 @@
     <div style="text-align:right;font-size:31px">
       אנחנו יכולים להשים פה תמונות סרטים וסתם דברים שכותבים ואחרי הרבה שנים נראה את כל החיים!
     </div>
+    <hr/>
+    <form action="https://present-v1.herokuapp.com/shirilo/upload">
+      <input type="file" id="imgFile" name="avatar">הוסף תמונה</input>
+       <input type="file" id="vidFile" name="avatar">הוסף סרט</input>
+       <input type="file" id="songFile" name="avatar">הוסף שיר</input>
+      <input type="submit">שמור</input>
+    </form>
+    <hr/>
+    <div id="res">
+    </div>
+    <script>
+      const xhr = new XMLHttpRequest();
+      
+      
+      xhr.onload = () => {
+        const data = xhr.responseText;
+        var res = JSON.parse(data);
+        
+        for(var i=0;i<res.arr.length;i++)
+        {
+          var url = res.arr[i];
+          let elem = document.querySelector ( '#res' )
+          elem.innerHTML = elem.innerHTML + '<img src="' + url + '"/>';
+        }
+      };
+      
+      xhr.open('GET', 'https://present-v1.herokuapp.com/shirilo/upload');
+      xhr.send();
+    </script>
   </body>
 </html>
