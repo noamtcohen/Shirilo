@@ -5,30 +5,29 @@
     <div style="text-align:right;font-size:72px">
       הכפתור הסודי של שירילו ואבא.
     </div>
-    
+
     <div style="text-align:right;font-size:31px">
       אנחנו יכולים להשים פה תמונות סרטים וסתם דברים שכותבים ואחרי הרבה שנים נראה את כל החיים!
-    </div>        
+    </div>
     <hr/>
-<!--     <form action="https://present-v1.herokuapp.com/Shirilo/upload" method="post"  enctype="multipart/form-data">
- -->    
-      <form action="http://localhost:3000/Shirilo/upload" method="post" enctype="multipart/form-data">
+    <form action="https://present-v1.herokuapp.com/Shirilo/upload" method="post" enctype="multipart/form-data">
       <input type="file" id="imgFile" name="avatar">הוסף תמונה</input><br/>
       <!-- <input type="file" id="vidFile" name="avatar">הוסף סרט</input><br/>
        <input type="file" id="songFile" name="avatar">הוסף שיר</input><br/> -->
       <input type="submit">שמור</input>
     </form>
     <hr/>
+    <!-- <iframe width="100%" height="600px" src="https://hubs.mozilla.com/dN7GrXf?embed_token=9abe79f11b137bfbc48ee9f521ce3060" style="width: 1024px; height: 768px;" allow="microphone; camera; vr; speaker;"></iframe> -->
     <div id="res">
     </div>
     <script>
       const xhr = new XMLHttpRequest();
-      
-      
+
+
       xhr.onload = () => {
         const data = xhr.responseText;
         var res = JSON.parse(data);
-        
+
         for(var i=0;i<res.arr.length;i++)
         {
           var url = res.arr[i];
@@ -36,7 +35,7 @@
           elem.innerHTML = elem.innerHTML + '<div><img src="' + url + '"/></div>';
         }
       };
-      
+
       xhr.open('GET', 'https://present-v1.herokuapp.com/Shirilo/db.json');
       xhr.send();
     </script>
